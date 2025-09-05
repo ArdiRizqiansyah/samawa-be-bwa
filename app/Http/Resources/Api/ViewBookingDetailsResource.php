@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WeddingOrganizerResource extends JsonResource
+class ViewBookingDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,14 @@ class WeddingOrganizerResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
+            'email' => $this->email,
+            'proof' => $this->proof,
             'phone' => $this->phone,
-            'icon' => $this->icon,
-            'weddingPackage_count' => $this->weddingPackage_count,
-            'weddingPackages' => WeddingPackageResource::collection($this->whenLoaded('weddingPackages')),
+            'booking_trx_id' => $this->booking_trx_id,
+            'is_paid' => $this->is_paid,
+            'total_amount' => $this->total_amount,
+            'started_at' => $this->started_at,
+            'weddingPackage' => new WeddingPackageResource($this->weddingPackage),
         ];
     }
 }

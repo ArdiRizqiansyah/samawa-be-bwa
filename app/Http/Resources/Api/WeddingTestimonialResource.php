@@ -14,6 +14,13 @@ class WeddingTestimonialResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'occupation' => $this->occupation,
+            'photo' => $this->photo,
+            'message' => $this->message,
+            'weddingPackage' => new WeddingPackageResource($this->weddingPackage),
+        ];
     }
 }

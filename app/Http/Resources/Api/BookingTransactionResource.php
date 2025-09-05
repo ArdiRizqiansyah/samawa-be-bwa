@@ -14,6 +14,20 @@ class BookingTransactionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'proof' => $this->proof,
+            'price' => $this->price,
+            'booking_trx_id' => $this->booking_trx_id,
+            'is_paid' => $this->is_paid,
+            'total_amount' => $this->total_amount,
+            'total_tax_amount' => $this->total_tax_amount,
+            'started_at' => $this->started_at,
+            'wedding_package_id' => $this->wedding_package_id,
+            'wedding_package' => new WeddingPackageResource($this->whenLoaded('weddingPackage')),
+        ];
     }
 }
