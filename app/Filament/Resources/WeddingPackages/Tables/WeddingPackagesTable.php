@@ -9,7 +9,9 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -21,15 +23,18 @@ class WeddingPackagesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('thumbnail')
+                ImageColumn::make('thumbnail')
                     ->searchable(),
                 TextColumn::make('price')
                     ->money()
                     ->sortable(),
                 IconColumn::make('is_popular')
-                    ->boolean(),
+                    ->boolean()
+                    ->trueColor('success')
+                    ->falseColor('danger')
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->label('Popular'),
                 TextColumn::make('city.name')
                     ->searchable(),
                 TextColumn::make('weddingOrganizer.name')
@@ -48,6 +53,12 @@ class WeddingPackagesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('city_id')
+                    ->label('City')
+                    ->relationship('city', 'name'),
+                SelectFilter::make('wedding_organizer_id')
+                    ->label('Wedding Organizer')
+                    ->relationship('weddingOrganizer', 'name'),
                 TrashedFilter::make(),
             ])
             ->recordActions([

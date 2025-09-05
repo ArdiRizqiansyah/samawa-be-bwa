@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\BonusPackages\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -14,17 +15,17 @@ class BonusPackageForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('thumbnail')
-                    ->required(),
+                    TextInput::make('price')
+                    ->required()
+                    ->numeric()
+                    ->prefix('IDR'),
                 Textarea::make('about')
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('price')
+                FileUpload::make('thumbnail')
+                    ->image()
                     ->required()
-                    ->numeric()
-                    ->prefix('$'),
+                    ->columnSpanFull(),
             ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\WeddingPackages\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -13,8 +14,7 @@ class WeddingPackageInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('slug'),
-                TextEntry::make('thumbnail'),
+                ImageEntry::make('thumbnail'),
                 TextEntry::make('price')
                     ->money(),
                 IconEntry::make('is_popular')

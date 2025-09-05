@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\BonusPackages\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,8 +13,7 @@ class BonusPackageInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('slug'),
-                TextEntry::make('thumbnail'),
+                ImageEntry::make('thumbnail'),
                 TextEntry::make('price')
                     ->money(),
                 TextEntry::make('deleted_at')
