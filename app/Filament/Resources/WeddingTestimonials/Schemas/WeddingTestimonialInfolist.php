@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\WeddingTestimonials\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,7 +13,7 @@ class WeddingTestimonialInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('photo'),
+                ImageEntry::make('photo'),
                 TextEntry::make('occupation'),
                 TextEntry::make('weddingPackage.name'),
                 TextEntry::make('deleted_at')

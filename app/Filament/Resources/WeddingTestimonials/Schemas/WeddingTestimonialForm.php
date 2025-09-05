@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\WeddingTestimonials\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -15,16 +16,21 @@ class WeddingTestimonialForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('photo')
-                    ->required(),
                 TextInput::make('occupation')
                     ->required(),
+                Select::make('wedding_package_id')
+                    ->relationship('weddingPackage', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->columnSpanFull(),
                 Textarea::make('message')
                     ->required()
                     ->columnSpanFull(),
-                Select::make('wedding_package_id')
-                    ->relationship('weddingPackage', 'name')
-                    ->required(),
+                FileUpload::make('photo')
+                    ->image()
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 }
