@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\WeddingOrganizers\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,8 +13,7 @@ class WeddingOrganizerInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('slug'),
-                TextEntry::make('icon'),
+                ImageEntry::make('icon'),
                 TextEntry::make('phone'),
                 TextEntry::make('deleted_at')
                     ->dateTime(),

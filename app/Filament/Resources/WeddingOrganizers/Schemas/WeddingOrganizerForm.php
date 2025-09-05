@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\WeddingOrganizers\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,9 +14,7 @@ class WeddingOrganizerForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('icon')
+                FileUpload::make('icon')
                     ->required(),
                 TextInput::make('phone')
                     ->tel()

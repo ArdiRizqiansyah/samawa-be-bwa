@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Cities\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,9 +14,8 @@ class CityForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('icon')
+                FileUpload::make('icon')
+                    ->image()
                     ->required(),
             ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Cities\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -13,7 +14,7 @@ class CityInfolist
             ->components([
                 TextEntry::make('name'),
                 TextEntry::make('slug'),
-                TextEntry::make('icon'),
+                ImageEntry::make('icon'),
                 TextEntry::make('deleted_at')
                     ->dateTime(),
                 TextEntry::make('created_at')
