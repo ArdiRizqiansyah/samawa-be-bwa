@@ -20,7 +20,7 @@ class BookingTransaction extends Model
         'proof',
         'total_amount',
         'price',
-        'total_tax_amout',
+        'total_tax_amount',
         'is_paid',
         'started_at',
         'wedding_package_id'

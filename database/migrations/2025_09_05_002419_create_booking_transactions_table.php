@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('proof');
             $table->unsignedBigInteger('total_amount');
             $table->unsignedBigInteger('price');
-            $table->unsignedBigInteger('total_tax_amout');
+            $table->unsignedBigInteger('total_tax_amount');
             $table->boolean('is_paid');
             $table->date('started_at');
             $table->foreignId('wedding_package_id')->constrained()->cascadeOnDelete();

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\BookingTransactions\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,12 +13,13 @@ class BookingTransactionInfolist
     {
         return $schema
             ->components([
+                ImageEntry::make('weddingPackage.thumbnail'),
                 TextEntry::make('booking_trx_id'),
                 TextEntry::make('name'),
                 TextEntry::make('phone'),
                 TextEntry::make('email')
                     ->label('Email address'),
-                TextEntry::make('proof'),
+                ImageEntry::make('proof'),
                 TextEntry::make('total_amount')
                     ->numeric(),
                 TextEntry::make('price')

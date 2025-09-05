@@ -9,7 +9,9 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -19,33 +21,18 @@ class BookingTransactionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('booking_trx_id')
-                    ->searchable(),
+                ImageColumn::make('weddingPackage.thumbnail'),
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('phone')
+                TextColumn::make('booking_trx_id')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('proof')
-                    ->searchable(),
-                TextColumn::make('total_amount')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
-                TextColumn::make('total_tax_amout')
-                    ->numeric()
-                    ->sortable(),
                 IconColumn::make('is_paid')
-                    ->boolean(),
-                TextColumn::make('started_at')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('weddingPackage.name')
-                    ->searchable(),
+                    ->boolean()
+                    ->trueColor('success')
+                    ->falseColor('danger')
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->label('Terverifikasi'),
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -60,6 +47,9 @@ class BookingTransactionsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('wedding_package_id')
+                    ->label('Wedding Package')
+                    ->relationship('weddingPackage', 'name'),
                 TrashedFilter::make(),
             ])
             ->recordActions([
