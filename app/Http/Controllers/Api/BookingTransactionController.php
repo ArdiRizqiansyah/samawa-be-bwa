@@ -18,10 +18,23 @@ class BookingTransactionController extends Controller
 
         $weddingPackage = WeddingPackage::find($validatedData['wedding_package_id']);
 
+        if (!$weddingPackage) {
+            return response()->json(['message' => 'Package not found'], 404);
+        }
+
         if ($request->hasFile('proof')){
             $filePath = $request->file('proof')->store('proofs', 'public');
             $validatedData['proof'] = $filePath;
         }
+
+        $price = $weddingPackage->price;
+        $tax = 0.11;
+        $totalTax = $price * $tax;
+        $grandTotal = $price + $totalTax;
+
+        $validatedData['total_tax_amount'] = $totalTax;
+        $validatedData['total_amount'] = $grandTotal;
+        $validatedData['price'] = $price;
 
         $validatedData['is_paid'] = false;
         $validatedData['booking_trx_id'] = BookingTransaction::generateUniqueTrxId();
