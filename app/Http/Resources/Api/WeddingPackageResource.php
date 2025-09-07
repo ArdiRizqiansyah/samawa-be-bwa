@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use App\Filament\Resources\Cities\CityResource;
-use App\Filament\Resources\WeddingOrganizers\WeddingOrganizerResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
